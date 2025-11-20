@@ -18,7 +18,5 @@ import org.zabalburu.daw1.trabajosjardineria.modelo.Trabajo;
 public class TrabajosJardineria {
 
     public static void main(String[] args) {
-        JardineriaControlador controlador = new JardineriaControlador();
-        controlador.iniciar();
     }
 }

@@ -4,8 +4,10 @@
  */
 package org.zabalburu.daw1.trabajosjardineria.vistas;
 
+import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,10 +46,24 @@ public class JardineriaVista {
     public double pedirDouble(String mensaje) throws ParseException{
         NumberFormat nf = NumberFormat.getInstance();
         String resp = pedirCadena(mensaje);
-        
         Number n = nf.parse(resp);
-        
         return n.doubleValue();
+    }
+    
+    public Date pedirFecha(String mensaje){
+        DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT); // dd/MM/YYYY
+        Date fecha = new Date();
+        String resp = pedirCadena(mensaje);
+        try {
+            fecha = df.parse(resp);
+        } catch (ParseException ex) {
+
+        }
+        return fecha;
+    }
+    
+    public void mostrarMensaje(String mensaje){
+        JOptionPane.showMessageDialog(null, mensaje);
     }
     
 }

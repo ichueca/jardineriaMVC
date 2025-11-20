@@ -62,8 +62,8 @@ public class JardineriaVista {
         return fecha;
     }
     
-    public void mostrarMensaje(String mensaje){
-        JOptionPane.showMessageDialog(null, mensaje);
+    public void mostrarMensaje(String mensaje, int tipoIcono){
+        JOptionPane.showMessageDialog(null, mensaje,"mensaje", tipoIcono);
     }
     
 }

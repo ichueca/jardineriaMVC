@@ -27,6 +27,21 @@ public class JardineriaServicio {
     private TipoTrabajoDAO tipoTrabajoDAO = new TipoTrabajoMatriz();
     private JardineroDAO jardineroDAO = new JardineroList();
     
+    public JardineriaServicio(){
+        addJardinero(new Jardinero(null, "11111111", "Juan", "López"));
+        addJardinero(new Jardinero(null, "22222222", "Eva", "Sanz"));
+        addJardinero(new Jardinero(null, "33333333", "Ana", "Martin"));
+        nuevoTrabajo(new Trabajo(null, "Poda en Casa Manolo", 5, 40.5, 
+            new GregorianCalendar(2025,11,1).getTime(), null, null, getTipoTrabajo(1)));
+        nuevoTrabajo(new Trabajo(null, "Desbrozar en Amurrio", 8, 40.5, 
+            new GregorianCalendar(2025,11,13).getTime(), null, null, getTipoTrabajo(2)));
+        nuevoTrabajo(new Trabajo(null, "Arreglar parterre", 2, 40.5, 
+            new GregorianCalendar(2025,11,15).getTime(), null, null, getTipoTrabajo(2)));
+        nuevoTrabajo(new Trabajo(null, "Limpiar bosque", 15, 30.5,
+            new GregorianCalendar(2025,11,20).getTime(), null, null, getTipoTrabajo(3)));
+    }
+    
+    
     public Trabajo nuevoTrabajo(Trabajo nuevo){
         return trabajoDAO.nuevoTrabajo(nuevo);
     }
@@ -94,11 +109,11 @@ public class JardineriaServicio {
         jardineroDAO.modificarJardinero(j);
     }
     
-    public void desAsignarTrabajo(Trabajo t, Jardinero j){
+    public void desAsignarTrabajo(Trabajo t){
+        t.getJardinero().getTrabajos().remove(t);
+        jardineroDAO.modificarJardinero(t.getJardinero());
         t.setJardinero(null);
         trabajoDAO.modificarTrabajo(t);
-        j.getTrabajos().remove(t);
-        jardineroDAO.modificarJardinero(j);
     }
     
     public void finalizarTrabajo(Trabajo t){
